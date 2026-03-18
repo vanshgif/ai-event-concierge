@@ -4,7 +4,8 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .models import EventRequest
 import requests
-
+import os
+from dotenv import load_dotenv
 
 def get_venue_image(query):
     try:
@@ -24,8 +25,8 @@ def get_venue_image(query):
     except:
         return "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee"
 
-
-client = genai.Client(api_key="AIzaSyDhXwDEqI0_ymAvmSNucnLSDkFyewaubaM")
+load_dotenv()  # Load environment variables from .env file
+client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
 
 
 @api_view(['POST'])
