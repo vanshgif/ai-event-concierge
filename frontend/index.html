@@ -235,7 +235,7 @@ btn.innerText="Generating..."
 
 document.getElementById("loading").style.display="flex"
 
-let res=await fetch("http://127.0.0.1:8000/api/generate/",{
+let res=await fetch("https://ai-event-concierge-backend.onrender.com/api/generate/",{
 method:"POST",
 headers:{
 "Content-Type":"application/json"
@@ -282,7 +282,7 @@ document.getElementById("result").innerHTML=""
 
 async function loadHistory(){
 
-let res=await fetch("http://127.0.0.1:8000/api/history/")
+let res=await fetch("https://ai-event-concierge-backend.onrender.com/api/history/")
 let data=await res.json()
 
 if(data.length===0){
