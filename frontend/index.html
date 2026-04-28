@@ -250,7 +250,7 @@ document.getElementById("loading").style.display="none"
 btn.disabled=false
 btn.innerText="Generate Plan"
 
-document.getElementById("result").innerHTML=`
+document.getElementById("result").innerHTML = `
 
 <div class="result-card">
 
@@ -266,6 +266,11 @@ src="${data.image_url || 'https://images.unsplash.com/photo-1500530855697-b586d8
 <p>💰 <b>Estimated Cost:</b> ${data.estimated_cost}</p>
 
 <p>✨ ${data.why_it_fits}</p>
+
+<button onclick="openMap('${data.maps_url}')" 
+style="margin-top:10px;background:#28a745;">
+📍 View on Google Maps
+</button>
 
 </div>
 
@@ -294,7 +299,7 @@ let html=""
 
 data.forEach(item=>{
 
-html+=`
+html += `
 <div class="history-card">
 
 <h4>🏨 ${item.venue_name}</h4>
@@ -304,6 +309,12 @@ html+=`
 <p>💰 <b>Cost:</b> ${item.estimated_cost}</p>
 
 <p>${item.why_it_fits}</p>
+
+<button onclick="openMap('${item.maps_url}')"
+style="margin-top:8px;background:#28a745;">
+View on Map
+</button>
+</a>
 
 </div>
 `
@@ -315,7 +326,15 @@ document.getElementById("history").innerHTML=html
 }
 
 loadHistory()
+function openMap(url){
+    if(!url || url === "undefined"){
+        alert("Map not available");
+        return;
+    }
 
+    // force open in new tab properly
+    window.open(url, "_blank");
+}
 </script>
 
 </body>
